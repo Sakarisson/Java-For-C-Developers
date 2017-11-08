@@ -10,9 +10,9 @@ import java.awt.Graphics;
  * @author Kristian Sakarisson (krsa1201)
  * @version 1.0
  */
-public class Shape implements Drawable {
+abstract class Shape implements Drawable {
 
-    private Point _point;
+    private Point[] _points = new Point[2];
     private String _color;
 
     /**
@@ -23,8 +23,8 @@ public class Shape implements Drawable {
      * @param color String
      */
     public Shape(double x, double y, String color) {
-        _point = new Point(x, y);
-        _color = color;
+        this._points[1] = new Point(x, y);
+        this._color = color;
     }
 
     /**
@@ -34,15 +34,33 @@ public class Shape implements Drawable {
      * @param color String
      */
     public Shape(Point point, String color) {
-        _point = point;
-        _color = color;
+        this._points[1] = point;
+        this._color = color;
     }
 
-    public void draw() {
+    /**
+     * <h2>Get circumference</h2>
+     * <p>Get circumference of shape</p>
+     * <p>Abstract function. Different implementations for
+     * different shapes.</p>
+     * @return Circumference in units
+     */
+    abstract public double getCircumference();
+
+    /**
+     * <h2>Get area</h2>
+     * <p>Get area of shape</p>
+     * <p>Abstract function. Different implementations for
+     * different shapes.</p>
+     * @return Area in square units
+     */
+    abstract public double getArea();
+
+    public void addPoint(double x, double y) {
 
     }
 
-    public void draw(Graphics g) {
-
+    public void addPoint(Point point) {
+        
     }
 }
