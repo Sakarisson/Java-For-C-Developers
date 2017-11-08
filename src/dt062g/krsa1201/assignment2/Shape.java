@@ -1,13 +1,16 @@
 package dt062g.krsa1201.assignment2;
 
+import java.awt.Graphics;
+
 /**
  * <h1>Shape</h1>
  * <p>An abstract superclass defining different
  * geometric shapes</p>
+ * <p>Implements Drawable</p>
  * @author Kristian Sakarisson (krsa1201)
  * @version 1.0
  */
-public class Shape {
+public class Shape implements Drawable {
 
     private Point _point;
     private String _color;
@@ -33,5 +36,13 @@ public class Shape {
     public Shape(Point point, String color) {
         _point = point;
         _color = color;
+    }
+
+    public void draw() {
+
+    }
+
+    public void draw(Graphics g) {
+
     }
 }
