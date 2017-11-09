@@ -7,6 +7,7 @@ import java.awt.Graphics;
  * <p>The class is derived from Shape</p>
  * @author Kristian Sakarisson (krsa1201)
  * @version 1.0
+ * @since 08-11-2017
  */
 class Circle extends Shape {
 
@@ -35,11 +36,15 @@ class Circle extends Shape {
      * @return Radius of this
      */
     public double getRadius() {
-        // Get difference between x and y positions
-        double xDifference = Math.abs(this._points[0].x() - this._points[1].x());
-        double yDifference = Math.abs(this._points[0].y() - this._points[1].y());
-        double radius = Math.sqrt(Math.pow(xDifference, 2) + Math.pow(yDifference, 2));
-        return radius;
+        try {
+            // Get difference between x and y positions
+            double xDifference = Math.abs(this._points[0].x() - this._points[1].x());       // Length from center to point on circle, along the x-axis
+            double yDifference = Math.abs(this._points[0].y() - this._points[1].y());       // Length from center to point on circle, along the y-axis
+            double radius = Math.sqrt(Math.pow(xDifference, 2) + Math.pow(yDifference, 2)); // Use Pythagoras theorem to find radius
+            return radius;
+        } catch (Exception e) {
+            return -1;
+        }
     }
 
     // Inherited
@@ -54,6 +59,8 @@ class Circle extends Shape {
 
     /**
      * <h2>Draw override</h2>
+     * <p>"Writes" circle in the sense that it prints some information about
+     * the circle</p>
      */
     public void draw() {
         System.out.println("Drawing a Circle" + this.toString());
@@ -61,6 +68,8 @@ class Circle extends Shape {
 
     /**
      * <h2>Draw override</h2>
+     * <p>Not implemented in assignment 2</p>
+     * @param g Graphics
      */
     public void draw(Graphics g) {
         
@@ -70,8 +79,14 @@ class Circle extends Shape {
     public String toString() {
         String output = "[";
         output += "start=" + this._points[0] + "; ";
-        output += "end=" + this._points[1] + "; ";
-        output += "radius=" + this.getRadius() + "; ";
+        output += "end=";
+        try {
+            output += this._points[1].toString();
+        } catch (Exception e) { // Null reference if there is no second point
+            output += "N/A";
+        }
+        output += "; radius=";
+        output += this.getRadius() >= 0 ? this.getRadius() + "; " : "N/A; "; // Write radius if non-negative, else N/A
         output += "color=" + this._color + "]";
 
         return output;

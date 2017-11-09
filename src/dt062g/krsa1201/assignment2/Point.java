@@ -6,6 +6,7 @@ package dt062g.krsa1201.assignment2;
  * geometric location of a given shape</h2>
  * @author Kristian Sakarisson (krsa1201)
  * @version 1.0
+ * @since 08-11-2017
  */
 public class Point {
 

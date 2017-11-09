@@ -7,9 +7,11 @@ package dt062g.krsa1201.assignment2;
  * <p>Implements Drawable</p>
  * @author Kristian Sakarisson (krsa1201)
  * @version 1.0
+ * @since 08-11-2017
  */
 abstract class Shape implements Drawable {
 
+    // Inheritable datamembers
     protected Point[] _points = new Point[2];
     protected String _color;
 
@@ -22,7 +24,7 @@ abstract class Shape implements Drawable {
      */
     public Shape(double x, double y, String color) {
         this._points[0] = new Point(x, y);
-        this._points[1] = new Point(x, y);
+        // this._points[1] = new Point(x, y);
         this._color = color;
     }
 
@@ -34,7 +36,7 @@ abstract class Shape implements Drawable {
      */
     public Shape(Point point, String color) {
         this._points[0] = point;
-        this._points[1] = point;
+        // this._points[1] = point;
         this._color = color;
     }
 

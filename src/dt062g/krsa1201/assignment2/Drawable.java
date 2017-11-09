@@ -7,6 +7,7 @@ import java.awt.Graphics;
  * <p>Interface used for drawing shapes</p>
  * @author Kristian Sakarisson (krsa1201)
  * @version 1.0
+ * @since 08-11-2017
  */
 public interface Drawable {
 

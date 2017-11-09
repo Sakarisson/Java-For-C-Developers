@@ -8,9 +8,9 @@ import java.util.Scanner;
 * methods to print circumference, print area and draw the 
 * shapes to the standard output.
 *
-* @author  Your Name (studentid)
+* @author  Kristian Sakarisson (krsa1201)
 * @version 1.0
-* @since   date last edited 
+* @since   08-11-2017
 */
 public class Assignment2 {
 
