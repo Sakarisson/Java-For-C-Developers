@@ -7,10 +7,10 @@
         
         {
             "type": "java",
-            "name": "Debug (Launch)-Main<Classes>",
+            "name": "Debug (Launch)-Main<Exceptions>",
             "request": "launch",
-            "mainClass": "dt062g.krsa1201.assignment2.Assignment2",
-            "projectName": "Classes",
+            "mainClass": "dt062g.krsa1201.assignment3.Assignment3",
+            "projectName": "Exceptions",
             "args": ""
         },
         {

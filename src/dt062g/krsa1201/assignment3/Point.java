@@ -1,4 +1,4 @@
-package dt062g.krsa1201.assignment2;
+package dt062g.krsa1201.assignment3;
 
 /**
  * <h2>Point</h2>
