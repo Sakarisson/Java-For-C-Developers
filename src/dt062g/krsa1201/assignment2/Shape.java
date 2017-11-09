@@ -1,7 +1,5 @@
 package dt062g.krsa1201.assignment2;
 
-import java.awt.Graphics;
-
 /**
  * <h1>Shape</h1>
  * <p>An abstract superclass defining different
@@ -12,8 +10,8 @@ import java.awt.Graphics;
  */
 abstract class Shape implements Drawable {
 
-    private Point[] _points = new Point[2];
-    private String _color;
+    protected Point[] _points = new Point[2];
+    protected String _color;
 
     /**
      * <h2>Raw coordinate constructor</h2>
@@ -23,6 +21,7 @@ abstract class Shape implements Drawable {
      * @param color String
      */
     public Shape(double x, double y, String color) {
+        this._points[0] = new Point(x, y);
         this._points[1] = new Point(x, y);
         this._color = color;
     }
@@ -34,6 +33,7 @@ abstract class Shape implements Drawable {
      * @param color String
      */
     public Shape(Point point, String color) {
+        this._points[0] = point;
         this._points[1] = point;
         this._color = color;
     }
@@ -56,11 +56,22 @@ abstract class Shape implements Drawable {
      */
     abstract public double getArea();
 
+    /**
+     * <h2>Add point</h2>
+     * <p>Change second point of shape by raw coordinates</p>
+     * @param x double
+     * @param y double
+     */
     public void addPoint(double x, double y) {
-
+        this._points[1] = new Point(x, y);
     }
 
+    /**
+     * <h2>Add point</h2>
+     * <p>Change second point of shape by Point object</p>
+     * @param point Point
+     */
     public void addPoint(Point point) {
-        
+        this._points[1] = point;
     }
 }

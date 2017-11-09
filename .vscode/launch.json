@@ -9,7 +9,7 @@
             "type": "java",
             "name": "Debug (Launch)-Main<Classes>",
             "request": "launch",
-            "mainClass": "dt062g.krsa1201.assignment2.Main",
+            "mainClass": "dt062g.krsa1201.assignment2.Assignment2",
             "projectName": "Classes",
             "args": ""
         },
