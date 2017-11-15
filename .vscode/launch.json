@@ -7,9 +7,9 @@
         
         {
             "type": "java",
-            "name": "Debug (Launch)-Main<Exceptions>",
+            "name": "Debug (Launch)-Main<Collections>",
             "request": "launch",
-            "mainClass": "dt062g.krsa1201.assignment3.Assignment3",
+            "mainClass": "dt062g.krsa1201.assignment4.Assignment4",
             "projectName": "Exceptions",
             "args": ""
         },
