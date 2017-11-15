@@ -111,7 +111,7 @@ class Drawing implements Drawable {
             try {
                 total += s.getCircumference();
             } catch (ShapeException e) {
-                System.out.println(e.getMessage());
+                // Continue without doing anything...
             }
         }
         return total;
@@ -129,7 +129,7 @@ class Drawing implements Drawable {
             try {
                 total += s.getArea();
             } catch (ShapeException e) {
-                System.out.println(e.getMessage());
+                // Continue without doing anything...
             }
         }
         return total;
@@ -137,7 +137,7 @@ class Drawing implements Drawable {
 
     /**
      * <h2>Draw</h2>
-     * <p>"Draws" all shapes by printing various informaton about them</p>
+     * <p>"Draws" all shapes by printing various information about them</p>
      */
     public void draw() {
         for (Shape s: this._shapes) {
