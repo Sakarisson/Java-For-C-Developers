@@ -57,16 +57,13 @@ public class Assignment3 {
 	
 	private static void printArea(Shape shape) {
 		System.out.println("Printing area of a " + shape.getClass().getSimpleName());
-		
-		// Get area of the shape and print it.
-		double area = shape.getArea();
-		
-		// If the area cannot be calculated, print an error message instead.
-		if (area < 0) {
-			System.err.println("The area cannot be calculated!");
-		}
-		else {
-			System.out.println("The area is: " + area);
-		}
-	}
+        
+        try {
+            // Get area of the shape and print it.
+            double area = shape.getArea();
+            System.out.println("The area is: " + area);
+        } catch (ShapeException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }

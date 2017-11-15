@@ -6,10 +6,10 @@ import java.awt.Graphics;
  * <h1>Rectangle</h1>
  * <p>The class is derived from Shape</p>
  * @author Kristian Sakarisson (krsa1201)
- * @version 1.0
+ * @version 2.0
  * @since 08-11-2017
  */
-class Rectangle extends Shape {
+final class Rectangle extends Shape {
 
     /**
      * <h2>Rectangle coordinate constructor</h2>
@@ -28,55 +28,49 @@ class Rectangle extends Shape {
     }
 
     // Inherited
-    public double getCircumference() {
-        if (this.getWidth() >= 0 && this.getHeight() >= 0) {
+    public double getCircumference() throws ShapeException {
+        try {
             return 2 * (this.getWidth() + this.getHeight()); // C = 2(w+h)
-        } else {
-            return -1;
+        } catch (ShapeException e) {
+            throw new ShapeException("The circumference cannot be calculated, end point is missing");
         }
     }
 
     // Inherited
-    public double getArea() {
-        if (this.getWidth() >= 0 && this.getHeight() >= 0) {
-            return this.getWidth() * this.getHeight(); // A = wh
-        } else {
-            return -1;
+    public double getArea() throws ShapeException {
+        double area = 0;
+        try {
+            area = this.getWidth() * this.getHeight(); // A = wh
+        } catch (ShapeException e) {
+            throw new ShapeException("The area cannot be calculated, end point is missing");
         }
+        return area;
     }
 
     /**
      * <h2>Get width</h2>
-     * <p>Calculates the width of square. Returns
-     * -1 if square doesn't have any width (i.e. there is no second
-     * point)</p>
-     * @return Width of square or -1
+     * <p>Calculates the width of square.</p>
+     * @return Width of square or ShapeException
      */
-    public double getWidth() {
-        double width;
+    public double getWidth() throws ShapeException {
         try {
-            width = Math.abs(this._points[0].x() - this._points[1].x());
+            return  Math.abs(this._points[0].x() - this._points[1].x());
         } catch (Exception e) {
-            width = -1;
+            throw new ShapeException("Could not determine width of square. End point missing");
         }
-        return width;
     }
 
     /**
      * <h2>Get height</h2>
-     * <p>Calculates height of square. Returns
-     * -1 if square doesn't have any height (i.e. there is no second
-     * point)</p>
-     * @return Height of square or -1
+     * <p>Calculates height of square.</p>
+     * @return Height of square or ShapeException
      */
-    public double getHeight() {
-        double height;
+    public double getHeight() throws ShapeException {
         try {
-            height = Math.abs(this._points[0].y() - this._points[1].y());
+            return Math.abs(this._points[0].y() - this._points[1].y());
         } catch (Exception e) {
-            height = -1;
+            throw new ShapeException("Could not determine height of square. End point missing");
         }
-        return height;
     }
 
     /**
@@ -108,9 +102,17 @@ class Rectangle extends Shape {
             output += "N/A";
         }
         output += "; width="; 
-        output += this.getWidth() >= 0 ? this.getWidth() : "N/A";    // Write width if non-negative, else N/A
+        try {
+            output += this.getWidth();
+        } catch (ShapeException e) {
+            output += "N/A";
+        }
         output += "; height=";
-        output += this.getHeight() >= 0 ? this.getHeight() : "N/A";  // Write height if non-negative, else N/A
+        try {
+            output += this.getHeight();
+        } catch (ShapeException e) {
+            output += "N/A";
+        }
         output += "; color=" + this._color + "]";
 
         return output;

@@ -1,5 +1,7 @@
 package dt062g.krsa1201.assignment3;
 
+import java.lang.Exception;
+
 /**
  * <h1>Shape Exception</h1>
  * <p>A simple exception class used for handling

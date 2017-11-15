@@ -8,7 +8,7 @@ package dt062g.krsa1201.assignment3;
  * @version 1.0
  * @since 08-11-2017
  */
-public class Point {
+final class Point {
 
     private double _x;
     private double _y;

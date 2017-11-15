@@ -6,7 +6,7 @@ package dt062g.krsa1201.assignment3;
  * geometric shapes</p>
  * <p>Implements Drawable</p>
  * @author Kristian Sakarisson (krsa1201)
- * @version 1.0
+ * @version 2.0
  * @since 08-11-2017
  */
 abstract class Shape implements Drawable {
@@ -45,7 +45,7 @@ abstract class Shape implements Drawable {
      * different shapes.</p>
      * @return Circumference in units
      */
-    abstract public double getCircumference();
+    abstract public double getCircumference() throws ShapeException;
 
     /**
      * <h2>Get area</h2>
@@ -54,7 +54,7 @@ abstract class Shape implements Drawable {
      * different shapes.</p>
      * @return Area in square units
      */
-    abstract public double getArea();
+    abstract public double getArea() throws ShapeException;
 
     /**
      * <h2>Add point</h2>

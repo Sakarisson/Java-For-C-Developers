@@ -6,10 +6,10 @@ import java.awt.Graphics;
  * <h1>Circle</h1>
  * <p>The class is derived from Shape</p>
  * @author Kristian Sakarisson (krsa1201)
- * @version 1.0
+ * @version 2.0
  * @since 08-11-2017
  */
-class Circle extends Shape {
+final class Circle extends Shape {
 
     private double PI = 3.14;
 
@@ -33,9 +33,9 @@ class Circle extends Shape {
      * <h2>Get radius</h2>
      * <p>Function used to get the radius
      * of circle object</p>
-     * @return Radius of this
+     * @return Radius of this or ShapeException
      */
-    public double getRadius() {
+    public double getRadius() throws ShapeException {
         try {
             // Get difference between x and y positions
             double xDifference = Math.abs(this._points[0].x() - this._points[1].x());       // Length from center to point on circle, along the x-axis
@@ -43,18 +43,26 @@ class Circle extends Shape {
             double radius = Math.sqrt(Math.pow(xDifference, 2) + Math.pow(yDifference, 2)); // Use Pythagoras theorem to find radius
             return radius;
         } catch (Exception e) {
-            return -1;
+            throw new ShapeException("Radius could not be determined, end point missing!");
         }
     }
 
     // Inherited
-    public double getCircumference() {
-        return 2 * this.PI * this.getRadius(); // C = 2πr
+    public double getCircumference() throws ShapeException {
+        try {
+            return 2 * this.PI * this.getRadius(); // C = 2πr
+        } catch (ShapeException e) {
+            throw new ShapeException("Circumference could not be determined, end point missing!");
+        }
     }
 
     // Inherited
-    public double getArea() {
-        return this.PI * Math.pow(this.getRadius(), 2); // A = πr^2
+    public double getArea()throws ShapeException {
+        try {
+            return this.PI * Math.pow(this.getRadius(), 2); // A = πr^2
+        } catch (ShapeException e) {
+            throw new ShapeException("The area cannot be calculated, end point is missing");
+        }
     }
 
     /**
@@ -86,7 +94,11 @@ class Circle extends Shape {
             output += "N/A";
         }
         output += "; radius=";
-        output += this.getRadius() >= 0 ? this.getRadius() + "; " : "N/A; "; // Write radius if non-negative, else N/A
+        try {
+            output += this.getRadius() + "; ";
+        } catch (ShapeException e) {
+            output += "N/A; ";
+        }
         output += "color=" + this._color + "]";
 
         return output;
