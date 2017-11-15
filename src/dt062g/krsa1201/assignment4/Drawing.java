@@ -153,4 +153,24 @@ class Drawing implements Drawable {
     public void draw(Graphics g) {
 
     }
+
+    /**
+     * <h2>toString()</h2>
+     * <p>Override of toString() method</p>
+     * <p>Writes information about name, author, size,
+     * circumference and area</p>
+     * @return String with information about drawing
+     */
+    public String toString() {
+        String output = "";
+
+        output += "Drawing[";
+        output += "name=" + this.getName() + "; ";
+        output += "author=" + this.getAuthor() + "; ";
+        output += "size=" + this.getSize() + "; ";
+        output += "circumference=" + this.getTotalCircumference() + "; ";
+        output += "area=" + this.getTotalArea() + "]";
+
+        return output;
+    }
 }
