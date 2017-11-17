@@ -6,7 +6,7 @@ import java.awt.Graphics;
  * <h1>Circle</h1>
  * <p>The class is derived from Shape</p>
  * @author Kristian Sakarisson (krsa1201)
- * @version 2.0
+ * @version 3.0
  * @since 08-11-2017
  */
 final class Circle extends Shape {
@@ -69,9 +69,10 @@ final class Circle extends Shape {
      * <h2>Draw override</h2>
      * <p>"Writes" circle in the sense that it prints some information about
      * the circle</p>
+     * @since 3.0
      */
     public void draw() {
-        System.out.println("Drawing a Circle" + this.toString());
+        System.out.println("Drawing a Circle" + this);
     }
 
     /**

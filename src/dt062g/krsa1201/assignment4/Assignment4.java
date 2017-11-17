@@ -6,9 +6,9 @@ package dt062g.krsa1201.assignment4;
 * author and different shapes in it. It then calls various
 * methods to print total circumference and area. 
 *
-* @author  Your Name (studentid)
+* @author  Kristian Sakarisson (krsa1201)
 * @version 1.0
-* @since   date last edited 
+* @since   15-11-2017
 */
 public class Assignment4 {
 

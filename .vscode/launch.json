@@ -10,7 +10,7 @@
             "name": "Debug (Launch)-Main<Collections>",
             "request": "launch",
             "mainClass": "dt062g.krsa1201.assignment4.Assignment4",
-            "projectName": "Exceptions",
+            "projectName": "Collections",
             "args": ""
         },
         {

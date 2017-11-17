@@ -140,8 +140,10 @@ class Drawing implements Drawable {
      * <p>"Draws" all shapes by printing various information about them</p>
      */
     public void draw() {
+        String description = "A drawing by " + this.getAuthor() + " called " + this.getName();
+        System.out.println(description);
         for (Shape s: this._shapes) {
-            s.draw();
+            System.out.println(s.getClass().getSimpleName() + s);
         }
     }
 
