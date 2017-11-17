@@ -54,7 +54,7 @@ final class Rectangle extends Shape {
      */
     public double getWidth() throws ShapeException {
         try {
-            return  Math.abs(this._points[0].x() - this._points[1].x());
+            return  Math.abs(this._points.get(0).x() - this._points.get(1).x());
         } catch (Exception e) {
             throw new ShapeException("Could not determine width of square. End point missing");
         }
@@ -67,7 +67,7 @@ final class Rectangle extends Shape {
      */
     public double getHeight() throws ShapeException {
         try {
-            return Math.abs(this._points[0].y() - this._points[1].y());
+            return Math.abs(this._points.get(0).y() - this._points.get(1).y());
         } catch (Exception e) {
             throw new ShapeException("Could not determine height of square. End point missing");
         }
@@ -95,10 +95,10 @@ final class Rectangle extends Shape {
     // Override of toString() method
     public String toString() {
         String output = "[";
-        output += "start=" + this._points[0].toString() + "; ";
+        output += "start=" + this._points.get(0) + "; ";
         output += "end=";
         try {
-            output += this._points[1].toString();
+            output += this._points.get(1);
         } catch (Exception e) { // Null reference error if there is no second point
             output += "N/A";
         }

@@ -1,18 +1,20 @@
 package dt062g.krsa1201.assignment4;
 
+import java.util.ArrayList;
+
 /**
  * <h1>Shape</h1>
  * <p>An abstract superclass defining different
  * geometric shapes</p>
  * <p>Implements Drawable</p>
  * @author Kristian Sakarisson (krsa1201)
- * @version 2.0
+ * @version 3.0
  * @since 08-11-2017
  */
 abstract class Shape implements Drawable {
 
     // Inheritable datamembers
-    protected Point[] _points = new Point[2];
+    protected ArrayList<Point> _points = new ArrayList<Point>();
     protected String _color;
 
     /**
@@ -21,9 +23,10 @@ abstract class Shape implements Drawable {
      * @param x double
      * @param y double
      * @param color String
+     * @since 3.0
      */
     public Shape(double x, double y, String color) {
-        this._points[0] = new Point(x, y);
+        this._points.add(new Point(x, y));
         this._color = color;
     }
 
@@ -32,9 +35,10 @@ abstract class Shape implements Drawable {
      * <p>Constructs shape from point</p>
      * @param point Point
      * @param color String
+     * @since 3.0
      */
     public Shape(Point point, String color) {
-        this._points[0] = point;
+        this._points.add(point);
         this._color = color;
     }
 
@@ -61,9 +65,12 @@ abstract class Shape implements Drawable {
      * <p>Change second point of shape by raw coordinates</p>
      * @param x double
      * @param y double
+     * @since 3.0
      */
     public void addPoint(double x, double y) {
-        this._points[1] = new Point(x, y);
+        if (this._points.size() < 2) {
+            this._points.add(new Point(x, y));
+        }
     }
 
     /**
@@ -72,6 +79,8 @@ abstract class Shape implements Drawable {
      * @param point Point
      */
     public void addPoint(Point point) {
-        this._points[1] = point;
+        if (this._points.size() < 2) {
+            this._points.add(point);
+        }
     }
 }

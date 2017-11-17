@@ -38,8 +38,8 @@ final class Circle extends Shape {
     public double getRadius() throws ShapeException {
         try {
             // Get difference between x and y positions
-            double xDifference = Math.abs(this._points[0].x() - this._points[1].x());       // Length from center to point on circle, along the x-axis
-            double yDifference = Math.abs(this._points[0].y() - this._points[1].y());       // Length from center to point on circle, along the y-axis
+            double xDifference = Math.abs(this._points.get(0).x() - this._points.get(1).x());       // Length from center to point on circle, along the x-axis
+            double yDifference = Math.abs(this._points.get(0).y() - this._points.get(1).y());       // Length from center to point on circle, along the y-axis
             double radius = Math.sqrt(Math.pow(xDifference, 2) + Math.pow(yDifference, 2)); // Use Pythagoras theorem to find radius
             return radius;
         } catch (Exception e) {
@@ -87,10 +87,10 @@ final class Circle extends Shape {
     // Override of toString() method
     public String toString() {
         String output = "[";
-        output += "start=" + this._points[0] + "; ";
+        output += "start=" + this._points.get(0) + "; ";
         output += "end=";
         try {
-            output += this._points[1].toString();
+            output += this._points.get(1);
         } catch (Exception e) { // Null reference if there is no second point
             output += "N/A";
         }
