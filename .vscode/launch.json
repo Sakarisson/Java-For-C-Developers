@@ -7,10 +7,10 @@
         
         {
             "type": "java",
-            "name": "Debug (Launch)-Main<Collections>",
+            "name": "Debug (Launch)-Main<File Handling>",
             "request": "launch",
-            "mainClass": "dt062g.krsa1201.assignment4.Assignment4",
-            "projectName": "Collections",
+            "mainClass": "dt062g.krsa1201.assignment5.Assignment5",
+            "projectName": "File Handling",
             "args": ""
         },
         {
