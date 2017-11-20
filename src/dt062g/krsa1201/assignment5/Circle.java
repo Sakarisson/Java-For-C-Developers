@@ -2,22 +2,32 @@ package dt062g.krsa1201.assignment5;
 
 import java.awt.Graphics;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * <h1>Circle</h1>
  * <p>The class is derived from Shape</p>
  * @author Kristian Sakarisson (krsa1201)
- * @version 3.0
- * @since 08-11-2017
+ * @version 4.0
+ * @since 20-11-2017
  */
+@XmlRootElement(name = "circle")
 final class Circle extends Shape {
 
-    private double PI = 3.14;
+    /**
+     * <h2>Default constructor</h2>
+     * <p>Calls default constructor of Shape</p>
+     * @since 4.0
+     */
+    public Circle() {
+        super();
+    }
 
     /**
      * <h2>Circle coordinate constructor</h2>
      * <p>Calls coordinate constructor of Shape</p>
      */
-    Circle(double x, double y, String color) {
+    public Circle(double x, double y, String color) {
         super(x, y, color);
     }
     
@@ -25,7 +35,7 @@ final class Circle extends Shape {
      * <h2>Circle Point constructor</h2>
      * <p>Calls Point constructor of Shape</p>
      */
-    Circle(Point point, String color) {
+    public Circle(Point point, String color) {
         super(point, color);
     }
 
@@ -50,7 +60,7 @@ final class Circle extends Shape {
     // Inherited
     public double getCircumference() throws ShapeException {
         try {
-            return 2 * this.PI * this.getRadius(); // C = 2πr
+            return 2 * Math.PI * this.getRadius(); // C = 2πr
         } catch (ShapeException e) {
             throw new ShapeException("Circumference could not be determined, end point missing!");
         }
@@ -59,7 +69,7 @@ final class Circle extends Shape {
     // Inherited
     public double getArea()throws ShapeException {
         try {
-            return this.PI * Math.pow(this.getRadius(), 2); // A = πr^2
+            return Math.PI * Math.pow(this.getRadius(), 2); // A = πr^2
         } catch (ShapeException e) {
             throw new ShapeException("The area cannot be calculated, end point is missing");
         }

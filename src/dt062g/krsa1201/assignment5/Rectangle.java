@@ -2,20 +2,32 @@ package dt062g.krsa1201.assignment5;
 
 import java.awt.Graphics;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * <h1>Rectangle</h1>
  * <p>The class is derived from Shape</p>
  * @author Kristian Sakarisson (krsa1201)
- * @version 3.0
- * @since 08-11-2017
+ * @version 4.0
+ * @since 20-11-2017
  */
+@XmlRootElement(name = "rectangle")
 final class Rectangle extends Shape {
+
+    /**
+     * <h2>Default constructor</h2>
+     * <p>Calls default constructor of Shape</p>
+     * @since 4.0
+     */
+    public Rectangle() {
+        super();
+    }
 
     /**
      * <h2>Rectangle coordinate constructor</h2>
      * <p>Calls coordinate constructor of Shape</p>
      */
-    Rectangle(double x, double y, String color) {
+    public Rectangle(double x, double y, String color) {
         super(x, y, color);
     }
     
@@ -23,7 +35,7 @@ final class Rectangle extends Shape {
      * <h2>Rectangle Point constructor</h2>
      * <p>Calls Point constructor of Shape</p>
      */
-    Rectangle(Point point, String color) {
+    public Rectangle(Point point, String color) {
         super(point, color);
     }
 

@@ -4,20 +4,30 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * <h1>Drawing</h1>
  * <p>Implementation of the Drawing class, which includes information
  * about a drawing, such as author name, name of drawing and a List
  * of Shapes</p>
  * @author Kristian Sakarisson (krsa1201)
- * @version 1.0
- * @since 15-11-2017
+ * @version 2.0
+ * @since 20-11-2017
  */
+@XmlRootElement(name = "drawing")
+@XmlAccessorType(XmlAccessType.FIELD)
 class Drawing implements Drawable {
 
     // Private data members
+    @XmlElement(name = "name")
     private String _name;
+    @XmlElement(name = "author")
     private String _author;
+    @XmlElement(name = "shape")
     private List<Shape> _shapes;
 
     /**
@@ -154,6 +164,18 @@ class Drawing implements Drawable {
      */
     public void draw(Graphics g) {
 
+    }
+
+    /**
+     * <h2>Clear</h2>
+     * <p>Clears all the shapes in the drawing, as well as the
+     * name and author of the drawing</p>
+     * @since 2.0
+     */
+    public void clear() {
+        this._name = "";
+        this._author = "";
+        this._shapes.clear();
     }
 
     /**

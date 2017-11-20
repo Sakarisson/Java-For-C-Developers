@@ -1,16 +1,25 @@
 package dt062g.krsa1201.assignment5;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * <h2>Point</h2>
  * <p>The class point, used for defining the
  * geometric location of a given shape</h2>
  * @author Kristian Sakarisson (krsa1201)
- * @version 1.0
- * @since 08-11-2017
+ * @version 2.0
+ * @since 20-11-2017
  */
+@XmlRootElement(name = "point")
+@XmlAccessorType(XmlAccessType.FIELD)
 final class Point {
 
+    @XmlElement(name = "x")
     private double _x;
+    @XmlElement(name = "y")
     private double _y;
 
     /**
