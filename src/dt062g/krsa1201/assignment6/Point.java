@@ -1,4 +1,4 @@
-package dt062g.krsa1201.assignment5;
+package dt062g.krsa1201.assignment6;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

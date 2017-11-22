@@ -1,4 +1,4 @@
-package dt062g.krsa1201.assignment5;
+package dt062g.krsa1201.assignment6;
 
 import java.lang.Exception;
 

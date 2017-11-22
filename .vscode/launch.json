@@ -9,7 +9,7 @@
             "type": "java",
             "name": "Debug (Launch)-Main<File Handling>",
             "request": "launch",
-            "mainClass": "dt062g.krsa1201.assignment5.Assignment5",
+            "mainClass": "dt062g.krsa1201.assignment6.Assignment6",
             "projectName": "File Handling",
             "args": ""
         },
