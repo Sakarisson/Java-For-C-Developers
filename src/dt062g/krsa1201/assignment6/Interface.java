@@ -12,20 +12,20 @@ import javax.swing.*;
  * <p>A class that controls the main window of the user interface</p>
  * @author Kristian Sakarisson (krsa1201)
  * @version 1.0
- * @since 22-11-2017
+ * @since 14-12-2017
  */
-class Interface implements ActionListener, MouseListener {
+class Interface implements ActionListener, MouseListener, MouseMotionListener {
 
     // Private variables
     private JFrame _frame;
     private String _appTitle = "Drawing Program";
-    private Color _selectedColor = Color.black; // Initial color is black
     private Color[] _colorOptions = { 
         Color.green, 
         Color.blue, 
         Color.black, 
         Color.red, 
-        Color.yellow
+        Color.yellow,
+        Color.cyan
     };
     private Drawing _drawing = new Drawing();
 
@@ -46,7 +46,10 @@ class Interface implements ActionListener, MouseListener {
     JTextArea coordinates;
     JPanel selectedColor;
 
-    // Empty MouseListener implementations:
+    // Drawing board
+    JPanel drawingBoard;
+
+    // Empty mouse-related implementations:
     @Override
     public void mouseExited(MouseEvent e) {}
     @Override
@@ -55,6 +58,8 @@ class Interface implements ActionListener, MouseListener {
     public void mousePressed(MouseEvent e) {}
     @Override
     public void mouseEntered(MouseEvent e) {}
+    @Override
+    public void mouseDragged(MouseEvent e) {}
 
     /**
      * <h1>Mouse Clicked event</h1>
@@ -68,6 +73,16 @@ class Interface implements ActionListener, MouseListener {
     }
 
     /**
+     * <h1>Mouse Moved event</h1>
+     * <p>Override of mouse moved event. Triggered whenever the mouse moves
+     * above drawing pane</p>
+     */
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        coordinates.setText("Coordinates: " + e.getX() + ", " + e.getY());
+    }
+
+    /**
      * <h1>Create new</h1>
      * <p>Creates new drawing</p>
      */
@@ -78,10 +93,18 @@ class Interface implements ActionListener, MouseListener {
         resetFrame();
     }
 
+    /**
+     * <h1>Save file</h2>
+     * <p>Saves drawing to file</p>
+     */
     private void saveFile() {
-        JOptionPane.showInputDialog("Save drawing to:");
+        JOptionPane.showInputDialog("Save drawing to:", this._drawing.getFullName() + ".xml");
     }
 
+    /**
+     * <h1>Load file</h1>
+     * <p>Loads drawing from file</p>
+     */
     private void loadFile() {
         JOptionPane.showInputDialog("Load drawing from:");
     }
@@ -195,10 +218,16 @@ class Interface implements ActionListener, MouseListener {
         this._frame.add(shapePickGrid, BorderLayout.PAGE_START);
     }
 
+    private void CreateDrawingBoard() {
+        drawingBoard = new JPanel();
+        drawingBoard.addMouseMotionListener(this);
+        drawingBoard.setPreferredSize(new Dimension(500, 500));
+        this._frame.add(drawingBoard);
+    }
+
     private void CreateStatusBar() {
         JPanel statusBar = new JPanel();
         statusBar.setLayout(new BoxLayout(statusBar, BoxLayout.X_AXIS));
-        statusBar.setBackground(Color.gray);
         coordinates = new JTextArea();
         JPanel selectedColorContainer = new JPanel();
         JTextArea colorText = new JTextArea();
@@ -212,13 +241,7 @@ class Interface implements ActionListener, MouseListener {
     }
 
     private void resetFrame() {
-        String title = "";
-        title += this._appTitle + " - ";
-        title += this._drawing.getName();
-        if (!_drawing.getAuthor().equals("")) {
-            title += " by " + _drawing.getAuthor();
-        }
-        this._frame.setTitle(title);
+        this._frame.setTitle(this._appTitle + " - " + this._drawing.getFullName());
     }
 
     /**
@@ -233,6 +256,7 @@ class Interface implements ActionListener, MouseListener {
         this._frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         CreateMenu();
         CreateColorPicker();
+        CreateDrawingBoard();
         CreateStatusBar();
         this._frame.pack();
         this._frame.setVisible(true);
