@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * about a drawing, such as author name, name of drawing and a List
  * of Shapes</p>
  * @author Kristian Sakarisson (krsa1201)
- * @version 2.0
+ * @version 3.0
  * @since 20-11-2017
  */
 @XmlRootElement(name = "drawing")
@@ -86,6 +86,19 @@ class Drawing implements Drawable {
      */
     public String getAuthor() {
         return this._author;
+    }
+
+    /**
+     * <h2>Get full name<h2>
+     * <p>Returns the full name of the drawing, including name and author</p>
+     * @since 3.0
+     */
+    public String getFullName() {
+        if (!this._author.equals("")) {
+            return this._name + " by " + this._author;
+        } else {
+            return this._name;
+        }
     }
 
     /**
