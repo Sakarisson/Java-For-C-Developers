@@ -43,6 +43,8 @@ class Interface implements ActionListener, MouseListener {
 
     // Status panel
     JPanel statusBar;
+    JTextArea coordinates;
+    JPanel selectedColor;
 
     // Empty MouseListener implementations:
     @Override
@@ -54,10 +56,15 @@ class Interface implements ActionListener, MouseListener {
     @Override
     public void mouseEntered(MouseEvent e) {}
 
+    /**
+     * <h1>Mouse Clicked event</h1>
+     * <p>Override of the mouse clicked event, triggered whenever
+     * user presses a color option</p>
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
         Component source = e.getComponent();
-        System.out.println(source.getBackground());
+        selectedColor.setBackground(source.getBackground());
     }
 
     /**
@@ -192,16 +199,21 @@ class Interface implements ActionListener, MouseListener {
         JPanel statusBar = new JPanel();
         statusBar.setLayout(new BoxLayout(statusBar, BoxLayout.X_AXIS));
         statusBar.setBackground(Color.gray);
-        JTextArea testText = new JTextArea("Hi");
-        JTextArea end = new JTextArea("Bye");
-        statusBar.add(testText, BorderLayout.PAGE_START);
-        statusBar.add(end, BorderLayout.PAGE_END);
+        coordinates = new JTextArea();
+        JPanel selectedColorContainer = new JPanel();
+        JTextArea colorText = new JTextArea();
+        colorText.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        colorText.setText("Selected color");
+        selectedColorContainer.add(colorText);
+        selectedColorContainer.add(selectedColor);
+        statusBar.add(coordinates, BorderLayout.PAGE_START);
+        statusBar.add(selectedColorContainer, BorderLayout.PAGE_END);
         this._frame.add(statusBar, BorderLayout.PAGE_END);
     }
 
     private void resetFrame() {
-        String title = ""; 
-        title += this._appTitle;
+        String title = "";
+        title += this._appTitle + " - ";
         title += this._drawing.getName();
         if (!_drawing.getAuthor().equals("")) {
             title += " by " + _drawing.getAuthor();
@@ -214,6 +226,8 @@ class Interface implements ActionListener, MouseListener {
      * <p>Sets up the window to become a proper GUI</p>
      */
     private void Initialize() {
+        selectedColor = new JPanel();
+        selectedColor.setBackground(Color.black);
         resetFrame();
         this._frame.setSize(500, 500);
         this._frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
