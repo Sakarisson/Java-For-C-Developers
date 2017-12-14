@@ -23,7 +23,7 @@ public class Assignment6 {
                 //new YourJFrame().setVisible(true);
                 // JFrame test = new JFrame("Test");
                 // test.setVisible(true);
-                Interface myInterface = new Interface("Kristian's program");
+                Interface myInterface = new Interface();
 			}
 		});		
 	}
