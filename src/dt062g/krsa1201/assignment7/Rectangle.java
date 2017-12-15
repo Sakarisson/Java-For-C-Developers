@@ -101,7 +101,9 @@ final class Rectangle extends Shape {
      * @param g Graphics
      */
     public void draw(Graphics g) {
-        
+        g.drawRect(this._points.get(0).x(), this._points.get(0).y(), 100, 100);
+        g.setColor(Color.red);
+        g.fillRect(200, 100, 200, 150);
     }
 
     // Override of toString() method

@@ -11,8 +11,8 @@ import javax.swing.*;
  * <h1>Interface</h1>
  * <p>A class that controls the main window of the user interface</p>
  * @author Kristian Sakarisson (krsa1201)
- * @version 1.0
- * @since 14-12-2017
+ * @version 2.0
+ * @since 15-12-2017
  */
 class Interface implements ActionListener, MouseListener, MouseMotionListener {
 
@@ -27,7 +27,7 @@ class Interface implements ActionListener, MouseListener, MouseMotionListener {
         Color.yellow,
         Color.cyan
     };
-    private Drawing _drawing = new Drawing();
+    // private Drawing _drawing = new Drawing();
 
     // MenuBar
     JMenuBar menuBar;
@@ -47,7 +47,7 @@ class Interface implements ActionListener, MouseListener, MouseMotionListener {
     JPanel selectedColor;
 
     // Drawing board
-    JPanel drawingBoard;
+    DrawingPanel drawingPanel = new DrawingPanel();
 
     // Empty mouse-related implementations:
     @Override
@@ -89,7 +89,7 @@ class Interface implements ActionListener, MouseListener, MouseMotionListener {
     private void createNew() {
         String name = JOptionPane.showInputDialog("Enter name of the drawing:");
         String author = JOptionPane.showInputDialog("Enter author of the drawing:");
-        _drawing = new Drawing(name, author);
+        this.drawingPanel.setDrawing(new Drawing(name, author));
         resetFrame();
     }
 
@@ -98,7 +98,7 @@ class Interface implements ActionListener, MouseListener, MouseMotionListener {
      * <p>Saves drawing to file</p>
      */
     private void saveFile() {
-        JOptionPane.showInputDialog("Save drawing to:", this._drawing.getFullName() + ".xml");
+        JOptionPane.showInputDialog("Save drawing to:", this.drawingPanel.getDrawing().getFullName() + ".xml");
     }
 
     /**
@@ -219,10 +219,10 @@ class Interface implements ActionListener, MouseListener, MouseMotionListener {
     }
 
     private void CreateDrawingBoard() {
-        drawingBoard = new JPanel();
-        drawingBoard.addMouseMotionListener(this);
-        drawingBoard.setPreferredSize(new Dimension(500, 500));
-        this._frame.add(drawingBoard);
+        drawingPanel = new DrawingPanel();
+        drawingPanel.addMouseMotionListener(this);
+        drawingPanel.setPreferredSize(new Dimension(500, 500));
+        this._frame.add(drawingPanel);
     }
 
     private void CreateStatusBar() {
@@ -241,7 +241,7 @@ class Interface implements ActionListener, MouseListener, MouseMotionListener {
     }
 
     private void resetFrame() {
-        this._frame.setTitle(this._appTitle + " - " + this._drawing.getFullName());
+        this._frame.setTitle(this._appTitle + " - " + this.drawingPanel.getDrawing().getFullName());
     }
 
     /**

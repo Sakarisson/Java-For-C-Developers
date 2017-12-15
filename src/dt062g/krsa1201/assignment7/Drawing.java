@@ -176,7 +176,9 @@ class Drawing implements Drawable {
      * <p>Not implemented in assignment 4</p>
      */
     public void draw(Graphics g) {
-
+        for (Shape s: this._shapes) {
+            s.draw(g);
+        }
     }
 
     /**
