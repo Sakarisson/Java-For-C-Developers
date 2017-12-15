@@ -7,16 +7,11 @@
         
         {
             "type": "java",
-            "name": "Debug (Launch)-Main<File Handling>",
+            "name": "Debug (Launch)-Main<Java Assignment 7 - 2D Graphics>",
             "request": "launch",
-            "mainClass": "dt062g.krsa1201.assignment6.Assignment6",
-            "projectName": "File Handling",
-            "args": ""
-        },
-        {
-            "type": "java",
-            "name": "Debug (Attach)",
-            "request": "attach",
+            "mainClass": "dt062g.krsa1201.assignment7.Assignment7",
+            "projectName": "Java Assignment 7 - 2D Graphics",
+            "args": "",
             "hostName": "localhost",
             "port": 0
         }
