@@ -15,8 +15,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  * about a drawing, such as author name, name of drawing and a List
  * of Shapes</p>
  * @author Kristian Sakarisson (krsa1201)
- * @version 3.0
- * @since 20-11-2017
+ * @version 4.0
+ * @since 18-12-2017
  */
 @XmlRootElement(name = "drawing")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -159,6 +159,16 @@ class Drawing implements Drawable {
     }
 
     /**
+     * <h2>Get number of shapes</h2>
+     * <p>Returns total number of shapes in drawing</p>
+     * @return Number of shapes
+     * @since 
+     */
+    public int getNumberOfShapes() {
+        return this._shapes.size();
+    }
+
+    /**
      * <h2>Draw</h2>
      * <p>"Draws" all shapes by printing various information about them</p>
      */
@@ -185,7 +195,7 @@ class Drawing implements Drawable {
      * <h2>Clear</h2>
      * <p>Clears all the shapes in the drawing, as well as the
      * name and author of the drawing</p>
-     * @since 2.0
+     * @since 4.0
      */
     public void clear() {
         this._name = "";

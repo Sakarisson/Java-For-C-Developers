@@ -1,5 +1,6 @@
 package dt062g.krsa1201.assignment7;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -87,11 +88,21 @@ final class Circle extends Shape {
 
     /**
      * <h2>Draw override</h2>
-     * <p>Not implemented in assignment 2</p>
+     * <p>Implementation of draw</p>
+     * <p>I decided to draw as an Arc just to have fun. Arc works similarly to Rect. It fills a rectangle with a circular shape
+     * starting from a given point (the top left corner). In this implementation, the length of the square is calculated as the radius times two</p>
      * @param g Graphics
+     * @since 4.0
      */
     public void draw(Graphics g) {
-        
+        try {
+            int radius = (int)this.getRadius();
+            Point topLeft = new Point(this._points.get(0).x() - radius, this._points.get(0).y() - radius);
+            g.setColor(Color.decode(this._color));
+            g.fillArc((int)topLeft.x(), (int)topLeft.y(), radius * 2, radius * 2, 0, 360);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     // Override of toString() method

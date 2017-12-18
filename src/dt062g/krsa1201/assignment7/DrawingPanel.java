@@ -69,9 +69,6 @@ class DrawingPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         this._drawing.draw(g);
-        // g.drawRect(200, 100, 200, 150);
-        // g.setColor(Color.red);
-        // g.fillRect(200, 100, 200, 150);
     }
 
     public void reset() {

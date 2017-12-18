@@ -64,7 +64,13 @@ class FileHandler {
      */
     static public Drawing loadFromXML(String fileName) {
         try {
+            if (!fileName.endsWith(".xml")) { // Append filename if .xml if it doens't already end with that
+                fileName += ".xml";
+            }
             File file = new File(fileName);
+            if (!file.exists() || file.isDirectory()) { // Only continue if requested file exists
+                return null;
+            }
             JAXBContext ctx = JAXBContext.newInstance(Drawing.class);
             Unmarshaller unmarshaller = ctx.createUnmarshaller();
             Drawing drawing = (Drawing) unmarshaller.unmarshal(file);
