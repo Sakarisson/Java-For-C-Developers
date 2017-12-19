@@ -1,6 +1,8 @@
 package dt062g.krsa1201.assignment7;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.nio.channels.ShutdownChannelGroupException;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -97,11 +99,36 @@ final class Rectangle extends Shape {
 
     /**
      * <h2>Draw override</h2>
-     * <p>Not implemented in assignment 2</p>
+     * <p>Rectangles get drawn from the top left point and they have a certain width and height.
+     * It is necessary to first find the top left point, and then calculate the width and height.</p>
+     * <p>After this, the square gets drawn</p>
      * @param g Graphics
      */
     public void draw(Graphics g) {
-        
+        try {
+            Point topLeft = new Point();
+            Point bottomRight = new Point();
+            if (this._points.get(0).x() < this._points.get(1).x()) {
+                topLeft.setX(this._points.get(0).x());
+                bottomRight.setX(this._points.get(1).x());
+            } else {
+                topLeft.setX(this._points.get(1).x());
+                bottomRight.setX(this._points.get(0).x());
+            }
+            if (this._points.get(0).y() < this._points.get(1).y()) {
+                topLeft.setY(this._points.get(0).y());
+                bottomRight.setY(this._points.get(1).y());
+            } else {
+                topLeft.setY(this._points.get(1).y());
+                bottomRight.setY(this._points.get(0).y());
+            }
+            int width = Math.abs((int)bottomRight.x() - (int)topLeft.x());
+            int height = Math.abs((int)bottomRight.y() - (int)topLeft.y());
+            g.setColor(Color.decode(this._color));
+            g.fillRect((int)topLeft.x(), (int)topLeft.y(), width, height);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     // Override of toString() method
