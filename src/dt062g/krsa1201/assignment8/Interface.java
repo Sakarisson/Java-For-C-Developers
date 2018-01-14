@@ -1,4 +1,4 @@
-package dt062g.krsa1201.assignment7;
+package dt062g.krsa1201.assignment8;
 
 // import javax.swing.JFrame;
 // import javax.swing.JLabel;
