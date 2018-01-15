@@ -4,14 +4,21 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        
         {
             "type": "java",
-            "name": "Debug (Launch)-Main<Java Assignment 7 - 2D Graphics>",
+            "name": "Debug (Launch)-Assignment8<Java Assignment 8 - Network Programming>",
             "request": "launch",
-            "mainClass": "dt062g.krsa1201.assignment7.Assignment7",
-            "projectName": "Java Assignment 7 - 2D Graphics",
-            "args": "",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "dt062g.krsa1201.assignment8.Assignment8",
+            "projectName": "Java Assignment 8 - Network Programming",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Attach)",
+            "request": "attach",
             "hostName": "localhost",
             "port": 0
         }
