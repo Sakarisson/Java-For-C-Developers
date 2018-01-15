@@ -37,7 +37,7 @@ public class Assignment8 {
 		// Make sure GUI is created on the event dispatching thread
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				new Interface(client).setVisible(true);
+                new Interface(client);
 			}
 		});
 	}

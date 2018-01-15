@@ -7,12 +7,14 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import dt062g.krsa1201.assignment8.client.Client;
+
 /**
  * <h2>Interface</h2>
  * <p>A class that controls the main window of the user interface</p>
  * @author Kristian Sakarisson (krsa1201)
- * @version 2.0
- * @since 18-12-2017
+ * @version 3.0
+ * @since 15-01-2018
  */
 class Interface implements ActionListener, MouseListener, MouseMotionListener {
 
@@ -65,6 +67,16 @@ class Interface implements ActionListener, MouseListener, MouseMotionListener {
      * <p>Creates a new Interface with a given name</p>
      */
     public Interface(String name) {
+        this._frame = new JFrame();
+        this.Initialize();
+    }
+
+    /**
+     * <h2>Client parameter constructor</h2>
+     * <p>Creates a new Interface with a connected Client</p>
+     * @since 3.0
+     */
+    public Interface(Client client) {
         this._frame = new JFrame();
         this.Initialize();
     }
