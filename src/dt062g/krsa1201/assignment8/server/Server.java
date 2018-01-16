@@ -6,6 +6,13 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/**
+ * <h1>Server</h1>
+ * <p>The server class, can communicate with several drawing programs</p>
+ * @author Kristian Sakarisson (krsa1201)
+ * @version 1.0
+ * @since 16-01-2018
+ */
 public class Server {
     public static void main(String[] args) {
         System.out.println(args);
