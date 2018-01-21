@@ -5,6 +5,15 @@ package dt062g.krsa1201.assignment8;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 import javax.swing.*;
 
 import dt062g.krsa1201.assignment8.client.Client;
@@ -45,6 +54,14 @@ class Interface implements ActionListener, MouseListener, MouseMotionListener {
     JMenuItem editName;
     JMenuItem editAuthor;
 
+    // Network menu
+    JMenu server;
+    JMenuItem serverClose;
+    JMenuItem serverGetFiles;
+    JMenuItem serverGetFile;
+    JMenuItem serverSaveAsFileToServer;
+    JMenuItem serverSaveFileToServer;
+
     // Status panel
     JPanel statusBar;
     JTextArea coordinates;
@@ -52,6 +69,9 @@ class Interface implements ActionListener, MouseListener, MouseMotionListener {
 
     // Drawing board
     DrawingPanel drawingPanel = new DrawingPanel();
+
+    // Networking
+    Client _client;
 
     /**
      * <h2>Default constructor</h2>
@@ -78,6 +98,7 @@ class Interface implements ActionListener, MouseListener, MouseMotionListener {
      */
     public Interface(Client client) {
         this._frame = new JFrame();
+        this._client = client;
         this.Initialize();
     }
 
@@ -183,6 +204,57 @@ class Interface implements ActionListener, MouseListener, MouseMotionListener {
         resetFrame();
     }
 
+    private void serverClose() {
+        _client.disconnect();
+        JOptionPane.showMessageDialog(this._frame, "Disconnected");
+    }
+
+    private void serverGetFiles() {
+        String[] files = _client.getFilenamesFromServer();
+        String output = "Files:\n";
+        for (String file : files) {
+            output += file + "\n";
+        }
+        JOptionPane.showMessageDialog(this._frame, output);
+    }
+
+    private void serverGetFile() {
+        String filename = JOptionPane.showInputDialog(this._frame, "File name");
+        String fileContents = _client.getFile(filename);
+        File file = new File(filename);
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+            writer.write(fileContents);
+            writer.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void serverSaveAsFile() {
+        try {
+            String fromFile = JOptionPane.showInputDialog(this._frame, "Name on computer");
+            String toFile = JOptionPane.showInputDialog(this._frame, "Name on server");
+            File file = new File(fromFile);
+            InputStream is = new FileInputStream(file);
+            BufferedReader buf = new BufferedReader(new InputStreamReader(is));
+            String fileContents = "";
+            String line;
+            int numberOfLines = 0;
+            while ((line = buf.readLine()) != null) {
+                fileContents += line + "\n";
+                numberOfLines++;
+            }
+            _client.saveFile(toFile, numberOfLines, fileContents);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this._frame, e.getMessage());
+        }
+    }
+
+    private void serverSaveFile() {
+    
+    }
+
     /**
      * <h2>ActionPerformed override</h2>
      */
@@ -205,6 +277,16 @@ class Interface implements ActionListener, MouseListener, MouseMotionListener {
             editName();
         } else if (origin == editAuthor) {
             editAuthor();
+        } else if (origin == serverClose) {
+            serverClose();
+        } else if (origin == serverGetFiles) {
+            serverGetFiles();
+        } else if (origin == serverGetFile) {
+            serverGetFile();
+        } else if (origin == serverSaveAsFileToServer) {
+            serverSaveAsFile();
+        } else if (origin == serverSaveFileToServer) {
+            serverSaveFile();
         }
     }
 
@@ -256,9 +338,32 @@ class Interface implements ActionListener, MouseListener, MouseMotionListener {
         editAuthor.addActionListener(this);
         edit.add(editAuthor);
 
+        server = new JMenu("Server");
+
+        serverClose = new JMenuItem("Close connection");
+        serverClose.addActionListener(this);
+        server.add(serverClose);
+
+        serverGetFiles = new JMenuItem("Get filenames from server");
+        serverGetFiles.addActionListener(this);
+        server.add(serverGetFiles);
+
+        serverGetFile = new JMenuItem("Get file from server");
+        serverGetFile.addActionListener(this);
+        server.add(serverGetFile);
+
+        serverSaveAsFileToServer = new JMenuItem("Save as file to server");
+        serverSaveAsFileToServer.addActionListener(this);
+        server.add(serverSaveAsFileToServer);
+
+        serverSaveFileToServer = new JMenuItem("Save file to server");
+        serverSaveFileToServer.addActionListener(this);
+        server.add(serverSaveFileToServer);
+
         // Add menus
         menuBar.add(file);
         menuBar.add(edit);
+        menuBar.add(server);
 
         // Set menu to main frame
         this._frame.setJMenuBar(menuBar);
